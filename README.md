@@ -1,5 +1,121 @@
 # DevOps Assignment - ITA730 - Dipesh Sunil Kathole.
+## Project Structure
 
+```
+.
+├── ansible/                    # Ansible playbooks for automation
+│   ├── deploy-stack.yml       # Docker stack deployment playbook
+│   ├── install-docker.yml     # Docker installation playbook
+│   ├── inventory             # Ansible inventory file
+│   └── swarm-init.yml        # Docker Swarm initialization playbook
+│
+├── ci/                        # CI/CD Configuration
+│   ├── github-actions.yml    # GitHub Actions workflow
+│   └── Jenkinsfile          # Jenkins pipeline configuration
+│
+├── django_app/               # Django Web Application
+│   ├── manage.py            # Django management script
+│   ├── requirements.txt     # Python dependencies
+│   ├── myapp/              # Main application
+│   │   ├── __init__.py
+│   │   └── views.py
+│   ├── myproject/          # Project configuration
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── templates/          # HTML templates
+│       ├── home.html
+│       ├── login.html
+│       └── register.html
+│
+├── docker/                  # Docker Configuration
+│   ├── docker-compose.yml  # Docker Compose configuration
+│   ├── Dockerfile.web      # Web application Dockerfile
+│   └── init.sql           # Database initialization script
+│
+├── scripts/                # Utility Scripts
+│   └── bootstrap.sh       # Environment setup script
+│
+├── selenium/              # Automated Testing
+│   └── test_app.py       # Selenium test scripts
+│
+└── terraform/            # Infrastructure as Code
+    ├── main.tf          # Main Terraform configuration
+    ├── terraform-key.pem # SSH key for instances
+    ├── terraform.tfstate # Terraform state file
+    └── variables.tf     # Variable definitions
+```
+
+## Components
+
+1. **Django Web Application**: A web application built with Django framework
+2. **Docker Configuration**: Containerization setup with Docker and Docker Compose
+3. **CI/CD Pipeline**: Implemented using GitHub Actions and Jenkins
+4. **Infrastructure as Code**: Using Terraform for infrastructure provisioning
+5. **Configuration Management**: Ansible playbooks for automation
+6. **Automated Testing**: Selenium tests for web application
+
+## Project Architecture
+
+```
+┌─────────────────┐     ┌─────────────────┐
+│   GitHub Repo   │────>│  Jenkins Server  │
+└────────┬────────┘     └────────┬────────┘
+         │                       │
+         │                       ▼
+         │               ┌─────────────────┐
+         │               │  Docker Swarm   │
+         │               │    Cluster      │
+         │               └────────┬────────┘
+         │                       │
+         ▼                       ▼
+┌─────────────────┐     ┌─────────────────┐
+│    Terraform    │────>│     Ansible     │
+└────────┬────────┘     └────────┬────────┘
+         │                       │
+         │                       ▼
+         │             ┌───────────────────┐
+         │             │  Infrastructure   │
+         └────────────>│   (AWS EC2)      │
+                      └───────────────────┘
+
+┌─── Application Stack ───┐
+│ ┌─────────────────┐    │
+│ │  Django Web App │    │
+│ └────────┬────────┘    │
+│          │             │
+│ ┌────────▼────────┐    │
+│ │   PostgreSQL    │    │
+│ └─────────────────┘    │
+└─────────────────────────┘
+```
+
+### Flow Description:
+
+1. **Development & Version Control**:
+   - Code is pushed to GitHub repository
+   - Triggers CI/CD pipeline in Jenkins
+
+2. **Infrastructure Provisioning**:
+   - Terraform creates AWS EC2 instances
+   - Sets up networking and security groups
+   - Provisions required infrastructure resources
+
+3. **Configuration & Deployment**:
+   - Ansible configures the EC2 instances
+   - Installs Docker and initializes Swarm cluster
+   - Sets up manager and worker nodes
+
+4. **Application Deployment**:
+   - Jenkins builds Docker images
+   - Deploys application stack to Docker Swarm
+   - Manages container orchestration
+
+5. **Monitoring & Testing**:
+   - Selenium runs automated tests
+   - Application health is monitored
+   - Logs are collected and analyzed
 ## Infrastructure (EC2 Instances)
 - **Controller**: 44.193.223.96
 - **Manager**: 34.230.229.232  
