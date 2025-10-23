@@ -38,6 +38,6 @@ ansible-playbook -i inventory deploy-stack.yml
 ## CI/CD Pipeline
 Jenkins automatically builds and deploys on every push to ITA730 branch.
 
-OUTPUT:
+OUTPUT:<br>
 Registeration Page :- Enter roll no and Admission no 
 ![register page](https://github.com/dipeshskathole/ITA730_DevOpsAssign_12/raw/main/outputs/registeration%20page.jpg)
